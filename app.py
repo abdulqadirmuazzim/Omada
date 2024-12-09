@@ -5,12 +5,15 @@ app = Flask(__name__)
 Auth_url = f"http://omada-controller-url/api/v2/auth"
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html")
+    client_mac = request.args.get("clientMac")
+    ap_mac = request.args.get("apMac")
+    ssid_name = request.args.get("ssidName")
+    return render_template("index.html", client=client_mac, ap=ap_mac, ssid=ssid_name)
 
 
-@app.route("/authenticate", methods=['GET'])
+@app.route("/authenticate", methods=["GET"])
 def authenticate():
     client_mac = request.args.get("clientMac")
     ap_mac = request.args.get("apMac")
