@@ -10,7 +10,7 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/authenticate")
+@app.route("/authenticate", methods=['GET'])
 def authenticate():
     client_mac = request.args.get("clientMac")
     ap_mac = request.args.get("apMac")
