@@ -1,19 +1,21 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
-sample = ["One", "Two", "Three", "Four", "Five"]
+Auth_url = f"http://omada-controller-url/api/v2/auth"
 
 
 @app.route("/")
 def home():
-    return render_template("index.html", the_list=sample)
+    return render_template("index.html")
 
 
-@app.route("/me")
-def me():
-    return "<h1>me</h1>"
+@app.route("/authenticate")
+def authenticate():
+    client_mac = request.args.get("clientMac")
+    ap_mac = request.args.get("apMac")
+    ssid_name = request.args.get("ssidName")
+    return render_template("display.html", infos=[client_mac, ap_mac, ssid_name])
 
 
 if __name__ == "__main__":
