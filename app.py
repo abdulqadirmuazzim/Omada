@@ -18,7 +18,7 @@ def authenticate():
     client_mac = request.args.get("clientMac")
     ap_mac = request.args.get("apMac")
     ssid_name = request.args.get("ssidName")
-    return render_template("display.html", infos=[client_mac, ap_mac, ssid_name])
+    return render_template("display.html", infos=[client_mac, ap_mac, ssid_name], req_args=request.args)
 
 
 if __name__ == "__main__":
